@@ -15,18 +15,15 @@
 
     <?php include("../../includesHTML/menu.html"); ?> <!-- Llama al menu  -->
 
-    <form name="formCita" method="POST" action="">
-        <h1>Solicitar Cita Medica</h1>
-
-    </form>
-
+    <?php include("Form1.php"); ?> <!-- Llama al menu  -->
 
     <?php include("../../includesHTML/footer.html"); ?> <!-- Llama al menu  -->
 
 
     <!-- jQuery -->
-    <script src="./js/jquery.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
     <!-- Bootstrap JavaScript -->
-    <script src="./js/bootstrap.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/P1/JSelect.js"></script>
 </body>
 </html>

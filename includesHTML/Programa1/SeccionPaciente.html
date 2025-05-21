@@ -1,0 +1,57 @@
+<h2 class="mb-3">Información del paciente</h2>
+
+<!-- INICIO columna izquierda (nombre y apellido) -->
+<div class="col-md-6">
+    <!-- INICIO campo nombre -->
+    <div class="mb-3">
+        <label for="nombre" class="form-label fw-bold">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="---" required>
+    </div>
+    <!-- FIN campo nombre -->
+
+    <!-- INICIO campo apellido -->
+    <div class="mb-3">
+        <label for="apellido" class="form-label fw-bold">Apellido:</label>
+        <input type="text" name="apellido" id="apellido" class="form-control" placeholder="---" required>
+    </div>
+    <!-- FIN campo apellido -->
+
+    <!-- INICIO sección: Sexo -->
+    <div class="mb-4">
+        <div class="mb-2 fw-bold">Sexo:</div>
+
+        <!-- INICIO radio masculino -->
+        <div class="form-check form-check-inline">
+            <input type="radio" name="sexo" value="masculino" id="sexoMasculino" class="form-check-input" required>
+            <label for="sexoMasculino" class="form-check-label">Masculino</label>
+        </div>
+        <!-- FIN radio masculino -->
+
+        <!-- INICIO radio femenino -->
+        <div class="form-check form-check-inline">
+            <input type="radio" name="sexo" value="femenino" id="sexoFemenino" class="form-check-input" required>
+            <label for="sexoFemenino" class="form-check-label">Femenino</label>
+        </div>
+        <!-- FIN radio femenino -->
+    </div>
+    <!-- FIN sección: Sexo -->
+</div>
+<!-- FIN columna izquierda -->
+
+<!-- INICIO columna derecha (cédula y edad) -->
+<div class="col-md-6">
+    <!-- INICIO campo cédula -->
+    <div class="mb-3">
+        <label for="cedula" class="form-label fw-bold">Cédula:</label>
+        <input type="text" name="cedula" id="cedula" class="form-control" placeholder="0-000-0000" required>
+    </div>
+    <!-- FIN campo cédula -->
+
+    <!-- INICIO campo edad -->
+    <div class="mb-3">
+        <label for="edad" class="form-label fw-bold">Edad:</label>
+        <input type="number" name="edad" id="edad" class="form-control" placeholder="00" min="15" max="120" required>
+    </div>
+    <!-- FIN campo edad -->
+</div>
+<!-- FIN columna derecha -->

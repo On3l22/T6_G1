@@ -1,0 +1,43 @@
+<!-- INICIO sección: Tipo de prueba -->
+<div class="mb-4">
+    <h2 class="mb-3">Tipo de prueba</h2>
+    <div class="radio mb-3"><!-- INICIO medico-->
+        <div class="mb-2 fw-bold">Medico:</div>
+
+        <label class="me-2"><!-- Opción 1 -->
+            <input type="radio" name="medico" value="general" required>
+            General
+        </label>
+
+        <label class="me-2"><!-- Opción 2 -->
+            <input type="radio" name="medico" value="especializado"  required>
+            Especializado
+        </label>
+    </div><!-- FIN medico-->
+
+    <!-- INICIO select hombres -->
+    <select id="select-hombres" name="pruebasHombre" class="form-select mb-3 w-50" style="display: none;">
+        <option disabled selected>Selecciona una prueba</option>
+        <?php foreach ($MG_Urologicos as $key => $value): ?>
+            <option value="<?= $value ?>"><?= $key ?> ($<?= $value ?>)</option>
+        <?php endforeach; ?>
+    </select>
+    <!-- FIN select hombres -->
+
+    <!-- INICIO select mujeres -->
+    <select id="select-mujeres" name="pruebasMujer" class="form-select mb-3 w-50" style="display: none;">
+        <option disabled selected>Selecciona una prueba</option>
+        <?php foreach ($MG_Ginecologicos as $key => $value): ?>
+            <option value="<?= $value ?>"><?= $key ?> ($<?= $value ?>)</option>
+        <?php endforeach; ?>
+    </select>
+    <!-- FIN select mujeres -->
+</div>
+<!-- FIN sección: Tipo de prueba -->
+
+<!-- INICIO sección: Fecha de la cita -->
+<div class="mb-4">
+    <h2 class="mb-3">Fecha</h2>
+    <input type="date" name="fechaCita" id="inputFechaCita" class="form-control w-25" value="" required="required" title="">
+</div>
+<!-- FIN sección: Fecha de la cita -->
