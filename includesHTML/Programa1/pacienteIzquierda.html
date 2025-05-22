@@ -1,0 +1,47 @@
+<!-- INICIO campo nombre -->
+<div class="mb-3 d-flex align-items-center">
+    <label for="nombre" class="form-label fw-bold me-2">Nombre:</label>
+    <input type="text" name="nombre" id="nombre" class="form-control" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" title="Solo letras" placeholder="---" required>
+</div>
+<!-- FIN campo nombre -->
+
+<!-- INICIO campo apellido -->
+<div class="mb-3 d-flex align-items-center">
+    <label for="apellido" class="form-label fw-bold me-2">Apellido:</label>
+    <input type="text" name="apellido" id="apellido" class="form-control" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" title="Solo letras" placeholder="---" required>
+</div>
+<!-- FIN campo apellido -->
+
+<!-- INICIO campo cédula -->
+<div class="mb-3 d-flex align-items-center">
+    <label for="cedula" class="form-label fw-bold me-2">Cédula:</label>
+    <input type="text" name="cedula" id="cedula" class="form-control" pattern="^(PE|E)?-?\d{1,2}-\d{3,4}-\d{3,5}$" title="00-0000-0000" placeholder="00-0000-0000" required>
+</div>
+<!-- FIN campo cédula -->
+
+<!-- INICIO campo edad -->
+<div class="mb-3 d-flex align-items-center">
+    <label for="edad" class="form-label fw-bold me-2">Edad:</label>
+    <input type="number" name="edad" id="edad" class="form-control" placeholder="00" title="Solo números" min="15" max="120" required>
+</div>
+<!-- FIN campo edad -->
+
+<!-- INICIO campo sexo -->
+<div class="radio mb-3 d-flex align-items-center">
+    <div class="me-2 fw-bold">Sexo:</div>
+
+    <!-- INICIO radio masculino -->
+    <label class="me-2">
+        <input type="radio" name="sexo" value="masculino" required>
+        Masculino
+    </label>
+    <!-- FIN radio masculino -->
+
+    <!-- INICIO radio femenino -->
+    <label class="me-2">
+        <input type="radio" name="sexo" value="femenino" required>
+        Femenino
+    </label>
+    <!-- FIN radio femenino -->
+</div>
+<!-- FIN campo sexo -->

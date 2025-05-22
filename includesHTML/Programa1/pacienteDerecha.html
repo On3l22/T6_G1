@@ -1,0 +1,27 @@
+<!-- INICIO campo provincia -->
+<div class="mb-3 align-items-center d-flex">
+    <label for="provincia" class="fw-bold me-2 form-label">Dirección:</label>
+    <input type="text" name="provincia" id="provincia" class="form-control" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" placeholder="Provincia" min="15" max="120" required>
+</div>
+<!-- FIN campo provincia -->
+
+<!-- INICIO campo distrito -->
+<div class="mb-3 align-items-center d-flex">
+    <input type="text" name="distrito" id="distrito" class="form-control" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" placeholder="Distrito" min="15" max="120" required>
+</div>
+<!-- FIN campo distrito -->
+
+<!-- INICIO campo ciudad y calle -->
+<div class="mb-3 align-items-center d-flex">
+    <input type="text" name="ciudad" id="ciudad" class="form-control me-2" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" title="Solo letras" placeholder="Ciudad" required>
+    <input type="text" name="calle" id="calle" class="form-control" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" title="Solo letras" placeholder="Urbanización / Calle / Barriada" required>
+</div>
+<!-- FIN campo ciudad y calle -->
+
+<!-- INICIO campo teléfonos -->
+<div class="mb-3 align-items-center d-flex">
+    <label class="fw-bold me-2 form-label">Teléfono:</label>
+    <input type="text" name="telefonoMovil" id="telefonoMovil" class="form-control me-2" pattern="^\d{4}-\d{4}$" title="0000-0000" placeholder="Móvil (0000-0000)">
+    <input type="text" name="telefonoCasa" id="telefonoCasa" class="form-control" pattern="^\d{3}-\d{4}$" title="000-0000" placeholder="Casa (000-0000)">
+</div>
+<!-- FIN campo teléfonos -->

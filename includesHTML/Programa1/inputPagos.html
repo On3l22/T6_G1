@@ -1,0 +1,47 @@
+<!-- INICIO inputs: efectivo -->
+<div id="inputsEfectivo" class="alert alert-info d-none" role="alert">
+  No se requiere información adicional para efectivo.
+</div>
+<!-- FIN inputs: efectivo -->
+
+<!-- INICIO inputs: tarjeta de crédito -->
+<div id="inputsCredito" class="d-none">
+  <div class="mb-3"> <!-- INICIO campo: número de tarjeta de crédito -->
+    <label for="numeroCredito" class="form-label">Número de tarjeta de crédito</label>
+    <input type="text" class="form-control" id="numeroCredito" name="numeroCredito" pattern="\d{16}" maxlength="16" placeholder="1234 5678 9012 3456" required>
+  </div> <!-- FIN campo: número de tarjeta de crédito -->
+
+  <div class="mb-3 row"> <!-- INICIO fila: vencimiento y CVV -->
+    <div class="col-6"> <!-- INICIO campo: vencimiento crédito -->
+      <label for="vencimientoCredito" class="form-label">Fecha de vencimiento</label>
+      <input type="month" class="form-control" id="vencimientoCredito" name="vencimientoCredito" required>
+    </div> <!-- FIN campo: vencimiento crédito -->
+
+    <div class="col-6"> <!-- INICIO campo: CVV crédito -->
+      <label for="cvvCredito" class="form-label">CVV</label>
+      <input type="text" class="form-control" id="cvvCredito" name="cvvCredito" pattern="\d{3}" maxlength="3" placeholder="123" required>
+    </div> <!-- FIN campo: CVV crédito -->
+  </div> <!-- FIN fila: vencimiento y CVV -->
+</div>
+<!-- FIN inputs: tarjeta de crédito -->
+
+<!-- INICIO inputs: tarjeta de débito -->
+<div id="inputsDebito" class="d-none">
+  <div class="mb-3"> <!-- INICIO campo: número de tarjeta de débito -->
+    <label for="numeroDebito" class="form-label">Número de tarjeta de débito</label>
+    <input type="text" class="form-control" id="numeroDebito" name="numeroDebito" pattern="\d{16}" maxlength="16" placeholder="1234 5678 9012 3456" required>
+  </div> <!-- FIN campo: número de tarjeta de débito -->
+
+  <div class="mb-3 row"> <!-- INICIO fila: vencimiento y CVV -->
+    <div class="col-6"> <!-- INICIO campo: vencimiento débito -->
+      <label for="vencimientoDebito" class="form-label">Fecha de vencimiento</label>
+      <input type="month" class="form-control" id="vencimientoDebito" name="vencimientoDebito" required>
+    </div> <!-- FIN campo: vencimiento débito -->
+
+    <div class="col-6"> <!-- INICIO campo: CVV débito -->
+      <label for="cvvDebito" class="form-label">CVV</label>
+      <input type="text" class="form-control" id="cvvDebito" name="cvvDebito" pattern="\d{3}" maxlength="3" placeholder="123" required>
+    </div> <!-- FIN campo: CVV débito -->
+  </div> <!-- FIN fila: vencimiento y CVV -->
+</div>
+<!-- FIN inputs: tarjeta de débito -->
