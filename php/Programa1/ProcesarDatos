@@ -1,0 +1,109 @@
+<?php
+class ProcesarDatos
+{
+    // Declaramoss las Variables
+    public $edad;
+    public $genero;
+    public $primera_cita;
+    public $tipo_servicio;
+    public $total;
+    public $fecha;
+    private $descjubilado;
+    private $totalbrt;
+
+    // Constructor para inicializar las variables
+    public function __construct($edad, $genero, $primera_cita, $tipo_servicio, $total, $fecha)
+    {
+        $this->edad = $edad;
+        $this->genero = $genero;
+        $this->primera_cita = $primera_cita;
+        $this->tipo_servicio = $tipo_servicio;
+        $this->total = $total;
+        $this->fecha = $fecha;
+        $this->descjubilado = $this->CalcularDescuentoJubilado();
+        $this->totalbrt = $this->CalcularTotalBruto();
+    }
+
+    // Métodos para calcular descuento y el total bruto deberían ir aquí
+    // Función para calcular total bruto
+    public function CalcularTotalBruto()
+    {
+        $primera_cita = $this->primera_cita;
+        $total = $this->total;
+        $tipo_servicio = $this->tipo_servicio;
+
+        // Validar primera cita medicina general
+        if ($primera_cita == "Sí" && $tipo_servicio == "Atención de Medicina general") {
+            $total = $total + 20;
+            return $total;
+        }
+
+        // Validar segunda cita medicina general
+        if ($primera_cita == "No" && $tipo_servicio == "Atención de Medicina general") {
+            $total = $total + 15;
+            return $total;
+        }
+
+        // Validar primera cita medicina especial
+        if ($primera_cita == "Sí" && $tipo_servicio == "Atención de Especialista") {
+            $total = $total + 40;
+            return $total;
+        }
+
+        // Validar segunda cita medicina especial
+        if ($primera_cita == "No" && $tipo_servicio == "Atención de Especialista") {
+            $total = $total + 30;
+            return $total;
+        }
+
+        return $total; // Devuelve el total si no se cumplen las condiciones anteriores
+    }
+
+    // Función para calcular descuento de jubilado
+    public function CalcularDescuentoJubilado()
+    {
+        $edad = $this->edad;
+        $totalbrt = $this->totalbrt;
+        $genero = $this->genero;
+
+        // Verificamos si aplica a Hombre
+        if ($edad >= 60 && $genero == "hombre") {
+            $descuento = $totalbrt * 0.10;
+            return $descuento;
+        }
+
+        // Verificamos si aplica a Mujer
+        if ($edad >= 57 && $genero == "mujer") {
+            $descuento = $totalbrt * 0.10;
+            return $descuento;
+        } else {
+            $descuento = 0;
+            return $descuento;
+        }
+    }
+    // Función para calcular descuento de octubre
+    public function CalcularDescuentoOctubre()
+    {
+        $fecha = $this->fecha;
+        $subtotaljubi = $this->desjubilado;
+        $totalbrt = $this->totalbrt;
+        $tb = $totalbrt - $subtotaljubi;
+
+        // Convertir la fecha a un objeto DateTime
+        $fecha_obj = new DateTime($fecha);
+
+        // Obtener el mes en formato numérico (01-12)
+        $mes = $fecha_obj->format('m');
+
+        // Validar si el mes es octubre (mes 10)
+        if ($mes == "10") {
+            $descuento = $tb * 0.10;
+            return $descuento;
+        } else {
+            $descuento = 0;
+            return $descuento;
+        }
+    }
+
+}
+?>
