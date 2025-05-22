@@ -3,55 +3,72 @@
 <!-- INICIO columna izquierda (nombre y apellido) -->
 <div class="col-md-6">
     <!-- INICIO campo nombre -->
-    <div class="mb-3">
-        <label for="nombre" class="form-label fw-bold">Nombre:</label>
+    <div class="mb-3 d-flex align-items-center">
+        <label for="nombre" class="form-label fw-bold me-2">Nombre:</label>
         <input type="text" name="nombre" id="nombre" class="form-control" placeholder="---" required>
     </div>
     <!-- FIN campo nombre -->
 
     <!-- INICIO campo apellido -->
-    <div class="mb-3">
-        <label for="apellido" class="form-label fw-bold">Apellido:</label>
+    <div class="mb-3 d-flex align-items-center">
+        <label for="apellido" class="form-label fw-bold me-2">Apellido:</label>
         <input type="text" name="apellido" id="apellido" class="form-control" placeholder="---" required>
     </div>
     <!-- FIN campo apellido -->
 
+    <!-- INICIO campo cédula -->
+    <div class="mb-3 d-flex align-items-center">
+        <label for="cedula" class="form-label fw-bold me-2">Cédula:</label>
+        <input type="text" name="cedula" id="cedula" class="form-control" pattern="^(PE|E)?-?\d{1,2}-\d{3,4}-\d{3,5}$" placeholder="00-000-0000" required>
+    </div>
+    <!-- FIN campo cédula -->
+
+    <!-- INICIO campo edad -->
+    <div class="mb-3 d-flex align-items-center">
+        <label for="edad" class="form-label fw-bold me-2">Edad:</label>
+        <input type="number" name="edad" id="edad" class="form-control" placeholder="---" min="15" max="120" required>
+    </div>
+    <!-- FIN campo edad -->
+
     <!-- INICIO sección: Sexo -->
-    <div class="mb-4">
-        <div class="mb-2 fw-bold">Sexo:</div>
+    <div class="radio mb-3 d-flex align-items-center">
+        <div class="me-2 fw-bold">Sexo:</div>
 
         <!-- INICIO radio masculino -->
-        <div class="form-check form-check-inline">
-            <input type="radio" name="sexo" value="masculino" id="sexoMasculino" class="form-check-input" required>
-            <label for="sexoMasculino" class="form-check-label">Masculino</label>
-        </div>
+        <label class="me-2"><!-- Opción 1 -->
+            <input type="radio" name="sexo" value="masculino" required>
+            Masculino
+        </label>
         <!-- FIN radio masculino -->
 
         <!-- INICIO radio femenino -->
-        <div class="form-check form-check-inline">
-            <input type="radio" name="sexo" value="femenino" id="sexoFemenino" class="form-check-input" required>
-            <label for="sexoFemenino" class="form-check-label">Femenino</label>
-        </div>
+        <label class="me-2"><!-- Opción 1 -->
+            <input type="radio" name="sexo" value="femenino" required>
+            Femenino
+        </label>
         <!-- FIN radio femenino -->
     </div>
     <!-- FIN sección: Sexo -->
 </div>
 <!-- FIN columna izquierda -->
 
-<!-- INICIO columna derecha (cédula y edad) -->
-<div class="col-md-6">
-    <!-- INICIO campo cédula -->
-    <div class="mb-3">
-        <label for="cedula" class="form-label fw-bold">Cédula:</label>
-        <input type="text" name="cedula" id="cedula" class="form-control" placeholder="0-000-0000" required>
+<!-- INICIO columna derecha (dirección) -->
+<div class="col-md-6 ">
+    <div class="mb-3 align-items-center d-flex">  
+        <label class="fw-bold me-2 form-label">
+            Dirección:
+        </label> 
+        <input type="number" name="provincia" id="provincia" class="form-control" placeholder="Provincia" min="15" max="120" required>
     </div>
-    <!-- FIN campo cédula -->
-
-    <!-- INICIO campo edad -->
-    <div class="mb-3">
-        <label for="edad" class="form-label fw-bold">Edad:</label>
-        <input type="number" name="edad" id="edad" class="form-control" placeholder="00" min="15" max="120" required>
+    <div class="mb-3 align-items-center d-flex">  
+        <input type="number" name="distrito" id="distrito" class="form-control" placeholder="Distrito" min="15" max="120" required>
     </div>
-    <!-- FIN campo edad -->
+    <div class="mb-3 align-items-center d-flex">  
+        <input type="number" name="ciudad" id="ciudad" class="form-control me-2" placeholder="Ciudad" min="15" max="120" required>
+        <input type="number" name="calle" id="calle" class="form-control" placeholder="Urbanización / Calle / Barriada" min="15" max="120" required>
+    </div>
+    </div>
+    <div class="mb-3 align-items-center d-flex">  
+        
 </div>
 <!-- FIN columna derecha -->
