@@ -1,109 +1,72 @@
 <?php
 class ProcesarDatos
 {
-    // Declaramoss las Variables
     public $edad;
     public $genero;
     public $primera_cita;
     public $tipo_servicio;
-    public $total;
     public $fecha;
-    private $descjubilado;
-    private $totalbrt;
 
-    // Constructor para inicializar las variables
-    public function __construct($edad, $genero, $primera_cita, $tipo_servicio, $total, $fecha)
+    private $subtotal_examenes;
+    private $totalbrt;
+    private $descjubilado;
+
+    public function __construct($edad, $genero, $primera_cita, $tipo_servicio, $examenes_seleccionados, $fecha)
     {
         $this->edad = $edad;
-        $this->genero = $genero;
+        $this->genero = $genero; 
         $this->primera_cita = $primera_cita;
         $this->tipo_servicio = $tipo_servicio;
-        $this->total = $total;
         $this->fecha = $fecha;
-        $this->descjubilado = $this->CalcularDescuentoJubilado();
+
+        $this->subtotal_examenes = 0;
+        foreach ($examenes_seleccionados as $key => $value) {
+            $this->subtotal_examenes += (float) $value;
+        }
+
         $this->totalbrt = $this->CalcularTotalBruto();
+        $this->descjubilado = $this->CalcularDescuentoJubilado();
     }
 
-    // Métodos para calcular descuento y el total bruto deberían ir aquí
-    // Función para calcular total bruto
+    // Total bruto = exámenes + cita médica
     public function CalcularTotalBruto()
     {
-        $primera_cita = $this->primera_cita;
-        $total = $this->total;
-        $tipo_servicio = $this->tipo_servicio;
+        $total = $this->subtotal_examenes;
 
-        // Validar primera cita medicina general
-        if ($primera_cita == "Sí" && $tipo_servicio == "Atención de Medicina general") {
-            $total = $total + 20;
-            return $total;
+        if ($this->tipo_servicio === "Atención de Medicina general") {
+            $total += ($this->primera_cita === "Sí") ? 20 : 15;
+        } elseif ($this->tipo_servicio === "Atención de Especialista") {
+            $total += ($this->primera_cita === "Sí") ? 40 : 30;
         }
 
-        // Validar segunda cita medicina general
-        if ($primera_cita == "No" && $tipo_servicio == "Atención de Medicina general") {
-            $total = $total + 15;
-            return $total;
-        }
-
-        // Validar primera cita medicina especial
-        if ($primera_cita == "Sí" && $tipo_servicio == "Atención de Especialista") {
-            $total = $total + 40;
-            return $total;
-        }
-
-        // Validar segunda cita medicina especial
-        if ($primera_cita == "No" && $tipo_servicio == "Atención de Especialista") {
-            $total = $total + 30;
-            return $total;
-        }
-
-        return $total; // Devuelve el total si no se cumplen las condiciones anteriores
+        return $total;
     }
 
-    // Función para calcular descuento de jubilado
     public function CalcularDescuentoJubilado()
     {
-        $edad = $this->edad;
-        $totalbrt = $this->totalbrt;
-        $genero = $this->genero;
-
-        // Verificamos si aplica a Hombre
-        if ($edad >= 60 && $genero == "hombre") {
-            $descuento = $totalbrt * 0.10;
-            return $descuento;
+        if (($this->genero === "masculino" && $this->edad >= 60) ||
+            ($this->genero === "femenino" && $this->edad >= 57)) {
+            return $this->totalbrt * 0.10;
         }
-
-        // Verificamos si aplica a Mujer
-        if ($edad >= 57 && $genero == "mujer") {
-            $descuento = $totalbrt * 0.10;
-            return $descuento;
-        } else {
-            $descuento = 0;
-            return $descuento;
-        }
+        return 0;
     }
-    // Función para calcular descuento de octubre
+
+    // Octubre solo aplica a exámenes, no al total bruto
     public function CalcularDescuentoOctubre()
     {
-        $fecha = $this->fecha;
-        $subtotaljubi = $this->desjubilado;
-        $totalbrt = $this->totalbrt;
-        $tb = $totalbrt - $subtotaljubi;
-
-        // Convertir la fecha a un objeto DateTime
-        $fecha_obj = new DateTime($fecha);
-
-        // Obtener el mes en formato numérico (01-12)
+        $fecha_obj = new DateTime($this->fecha);
         $mes = $fecha_obj->format('m');
 
-        // Validar si el mes es octubre (mes 10)
-        if ($mes == "10") {
-            $descuento = $tb * 0.10;
-            return $descuento;
-        } else {
-            $descuento = 0;
-            return $descuento;
+        if ($mes === "10" && $this->subtotal_examenes > 0) {
+            return $this->subtotal_examenes * 0.10;
         }
+
+        return 0;
     }
 
+    public function CalcularPrecio($totalbt, $descuento1, $descuento2)
+    {
+        return $totalbt - ($descuento1 + $descuento2);
+    }
 }
 ?>
