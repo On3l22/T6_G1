@@ -41,17 +41,17 @@ function mostrarResumenCita(
     echo "<tr><th colspan='2' style='background-color: #f2f2f2;'>Resumen de costos</th></tr>";
     echo "<tr><td><strong>Subtotal (cita + exámenes):</strong></td><td>$" . number_format($totalbt, 2) . "</td></tr>";
 
+    if ($descuento_octubre > 0) {
+        echo "<tr><td><strong>Descuento por promoción de octubre (10% de exámenes):</strong></td><td>-$" . number_format($descuento_octubre, 2) . "</td></tr>";
+    } else {
+        echo "<tr><td><strong>Descuento por octubre:</strong></td><td>No aplica</td></tr>";
+    }
     if ($descuento_jubilado > 0) {
         echo "<tr><td><strong>Descuento por jubilado (10% del subtotal):</strong></td><td>-$" . number_format($descuento_jubilado, 2) . "</td></tr>";
     } else {
         echo "<tr><td><strong>Descuento por jubilado:</strong></td><td>No aplica</td></tr>";
     }
 
-    if ($descuento_octubre > 0) {
-        echo "<tr><td><strong>Descuento por promoción de octubre (10% de exámenes):</strong></td><td>-$" . number_format($descuento_octubre, 2) . "</td></tr>";
-    } else {
-        echo "<tr><td><strong>Descuento por octubre:</strong></td><td>No aplica</td></tr>";
-    }
 
     echo "<tr><td><strong>Total a pagar:</strong></td><td><strong>$" . number_format($precio_final, 2) . "</strong></td></tr>";
     echo "</table>";
