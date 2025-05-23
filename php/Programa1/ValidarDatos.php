@@ -1,5 +1,5 @@
 <?php
-require_once 'ProcesarDatos';
+require_once 'ProcesarDatos.php';
 require_once 'Salida.php';
 
 try {
