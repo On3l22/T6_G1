@@ -35,14 +35,15 @@ try {
 
         $pacientes[$cedula]['citas'] = [];
 
-        // 2. Obtener citas con exámenes
+        // 2. Obtener citas activas con exámenes
         $queryCitas = "
-            SELECT c.id, c.fecha, c.hora, c.tipo_medico, c.primera_vez,
-                   e.nombre AS examen_nombre
+            SELECT c.id, c.fecha, c.hora, c.tipo_medico, 
+                   e.nombre AS examen_nombre, c.activo
             FROM citas c
             LEFT JOIN cita_examen ce ON ce.cita_id = c.id
             LEFT JOIN examenes e ON ce.examen_id = e.id
             WHERE c.cedula = '$cedula'
+              AND c.activo = 1
             ORDER BY c.fecha, c.hora
         ";
 
@@ -61,7 +62,6 @@ try {
                     'id'           => "cita-" . $idCita,
                     'fecha'        => $fechaHora,
                     'tipo_medico'  => $row['tipo_medico'],
-                    'primera_cita' => $row['primera_vez'] ? 'Sí' : 'No',
                     'pruebas'      => []
                 ];
             }

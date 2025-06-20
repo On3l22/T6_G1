@@ -1,8 +1,8 @@
 <?php
-
 include './clinica/consultarExamenes.php';
 include './clinica/recuperarCitas.php';
 
+$mensaje = '';
 $cedulaIngresada = $_POST['cedula'] ?? '';
 $paciente        = $pacientes[$cedulaIngresada] ?? null;
 
@@ -25,9 +25,46 @@ $pruebas_sel   = $citaActual['pruebas']       ?? [];
 $catalogoPruebas = ($sexo === 'Femenino') ? $MG_Ginecologicos : $MG_Urologicos;
 $fechaSolo = date('Y-m-d', strtotime($fecha_cita));
 $horaSolo  = date('H:i',    strtotime($fecha_cita));
+
+// --- Procesar Guardar ---
+if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
+    $idx = $_POST['cita_id'];
+    // Actualiza en tu fuente de datos real aquí — ejemplo genérico:
+    $listaCitas[$idx]['tipo_medico'] = $_POST['tipo_medico'] ?? 'General';
+    $listaCitas[$idx]['fecha'] = $_POST['fecha'] ?? $fechaSolo;
+    $listaCitas[$idx]['hora'] = $_POST['hora'] ?? $horaSolo;
+    $listaCitas[$idx]['pruebas'] = $_POST['tipo_prueba'] ?? [];
+    $mensaje = "Cita actualizada correctamente.";
+    // Aquí debes guardar $listaCitas en la base o archivo real
+}
+
+// --- Procesar Borrar ---
+if (isset($_POST['borrar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
+    $idx = $_POST['cita_id'];
+    // Aquí cambia el campo activo a 0 en la base real:
+    // Ejemplo:
+    // $listaCitas[$idx]['activo'] = 0;
+    unset($listaCitas[$idx]); // o marca como inactivo según tu implementación
+    $citaActual = null;
+    $mensaje = "Cita borrada correctamente.";
+    // Guarda los cambios en la base real
+}
 ?>
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Paciente</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
   <h2 class="mb-4">Registro de Paciente</h2>
+
+  <?php if ($mensaje): ?>
+    <div class="alert alert-info"><?= htmlspecialchars($mensaje) ?></div>
+  <?php endif; ?>
 
   <form method="POST" class="row g-3">
 
@@ -35,7 +72,7 @@ $horaSolo  = date('H:i',    strtotime($fecha_cita));
       <label class="form-label">Cédula</label>
       <div class="input-group">
         <input type="text" name="cedula" value="<?= htmlspecialchars($cedulaIngresada) ?>" class="form-control" required>
-        <button class="btn btn-outline-secondary" name="buscar">Buscar</button>
+        <button class="btn btn-outline-secondary" name="buscar" type="submit">Buscar</button>
       </div>
     </div>
 
@@ -104,7 +141,6 @@ $horaSolo  = date('H:i',    strtotime($fecha_cita));
       </div>
     </div>
 
-    <!-- ✅ FECHA Y HORA BIEN PRESENTADAS -->
     <fieldset class="col-md-6 border rounded p-3">
       <legend class="float-none w-auto px-2">Fecha y hora de la cita</legend>
       <div class="row">
@@ -119,8 +155,9 @@ $horaSolo  = date('H:i',    strtotime($fecha_cita));
       </div>
     </fieldset>
 
-    <div class="col-12">
-      <button class="btn btn-primary" name="guardar">Guardar</button>
+    <div class="col-12 d-flex gap-2">
+      <button class="btn btn-success" name="guardar">Guardar</button>
+      <button class="btn btn-danger" name="borrar" onclick="return confirm('¿Seguro que desea borrar esta cita?')">Borrar</button>
     </div>
 
   </form>

@@ -1,9 +1,9 @@
 <?php 
 // Incluye el archivo de conexión en la cabecera 
-$servername = "127.0.0.1:3309"; 
+$servername = "localhost"; 
 $username = "root"; 
 
-$password = ""; 
+$password = "UTP.Guerrero2024"; 
 $database = "clinica"; 
  
 try { 
