@@ -26,14 +26,28 @@ $catalogoPruebas = ($sexo === 'Femenino') ? $MG_Ginecologicos : $MG_Urologicos;
 $fechaSolo = date('Y-m-d', strtotime($fecha_cita));
 $horaSolo  = date('H:i',    strtotime($fecha_cita));
 
-// Guardar cambios (simulado)
+// --- Procesar Guardar ---
 if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
     $idx = $_POST['cita_id'];
+    // Actualiza en tu fuente de datos real aquí — ejemplo genérico:
     $listaCitas[$idx]['tipo_medico'] = $_POST['tipo_medico'] ?? 'General';
     $listaCitas[$idx]['fecha'] = $_POST['fecha'] ?? $fechaSolo;
     $listaCitas[$idx]['hora'] = $_POST['hora'] ?? $horaSolo;
     $listaCitas[$idx]['pruebas'] = $_POST['tipo_prueba'] ?? [];
     $mensaje = "Cita actualizada correctamente.";
+    // Aquí debes guardar $listaCitas en la base o archivo real
+}
+
+// --- Procesar Borrar ---
+if (isset($_POST['borrar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
+    $idx = $_POST['cita_id'];
+    // Aquí cambia el campo activo a 0 en la base real:
+    // Ejemplo:
+    // $listaCitas[$idx]['activo'] = 0;
+    unset($listaCitas[$idx]); // o marca como inactivo según tu implementación
+    $citaActual = null;
+    $mensaje = "Cita borrada correctamente.";
+    // Guarda los cambios en la base real
 }
 ?>
 
@@ -41,12 +55,12 @@ if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Gestión de Citas</title>
+  <title>Registro de Paciente</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
 <div class="container py-5">
-  <h2 class="mb-4">Gestión de Citas del Paciente</h2>
+  <h2 class="mb-4">Registro de Paciente</h2>
 
   <?php if ($mensaje): ?>
     <div class="alert alert-info"><?= htmlspecialchars($mensaje) ?></div>
@@ -108,35 +122,20 @@ if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
 
     <div class="col-md-3">
       <label class="form-label">Tipo de Médico</label><br>
-      <input type="radio" name="tipo_medico" id="general" value="General"
-             <?= $tipo_medico === 'General' ? 'checked' : '' ?>
-             onclick="togglePruebas(false)">
+      <input type="radio" name="tipo_medico" id="general" value="General" <?= $tipo_medico === 'General' ? 'checked' : '' ?> onclick="togglePruebas(false)">
       <label for="general">General</label><br>
-      <input type="radio" name="tipo_medico" id="especializado" value="Especializado"
-             <?= $tipo_medico === 'Especializado' ? 'checked' : '' ?>
-             onclick="togglePruebas(true)">
+      <input type="radio" name="tipo_medico" id="especializado" value="Especializado" <?= $tipo_medico === 'Especializado' ? 'checked' : '' ?> onclick="togglePruebas(true)">
       <label for="especializado">Especializado</label>
     </div>
 
-    <div class="col-md-9" id="seccion-pruebas" style="display: none;">
+    <div class="col-md-9">
       <label class="form-label">Tipo de Prueba</label>
       <div class="border p-3 rounded bg-white">
-        <?php foreach ($catalogoPruebas as $id => $prueba): ?>
-          <?php
-            $checked = in_array($id, $pruebas_sel) ? 'checked' : '';
-            $inputId = 'prueba_' . $id;
-          ?>
+        <?php foreach ($catalogoPruebas as $prueba => $precio): ?>
+          <?php $checked = in_array($prueba, $pruebas_sel) ? 'checked' : ''; ?>
           <div class="form-check">
-            <input class="form-check-input prueba-checkbox"
-                   type="checkbox"
-                   name="tipo_prueba[]"
-                   id="<?= $inputId ?>"
-                   value="<?= $id ?>"
-                   <?= $checked ?>
-                   <?= $tipo_medico !== 'Especializado' ? 'disabled' : '' ?>>
-            <label class="form-check-label" for="<?= $inputId ?>">
-              <?= htmlspecialchars($prueba['nombre']) ?> ($<?= number_format($prueba['precio'], 2) ?>)
-            </label>
+            <input class="form-check-input prueba-checkbox" type="checkbox" name="tipo_prueba[]" id="<?= md5($prueba) ?>" value="<?= htmlspecialchars($prueba) ?>" <?= $checked ?> <?= $tipo_medico !== 'Especializado' ? 'disabled' : '' ?>>
+            <label class="form-check-label" for="<?= md5($prueba) ?>"><?= htmlspecialchars($prueba) ?> ($<?= $precio ?>)</label>
           </div>
         <?php endforeach; ?>
       </div>
@@ -156,29 +155,23 @@ if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
       </div>
     </fieldset>
 
-    <div class="col-12">
-      <button class="btn btn-primary" name="guardar">Guardar</button>
+    <div class="col-12 d-flex gap-2">
+      <button class="btn btn-success" name="guardar">Guardar</button>
+      <button class="btn btn-danger" name="borrar" onclick="return confirm('¿Seguro que desea borrar esta cita?')">Borrar</button>
     </div>
+
   </form>
 </div>
 
 <script>
 function togglePruebas(habilitar) {
-  const seccion = document.getElementById('seccion-pruebas');
-  if (!seccion) return;
-
-  seccion.style.display = habilitar ? 'block' : 'none';
-
   document.querySelectorAll('.prueba-checkbox').forEach(cb => {
     cb.disabled = !habilitar;
     if (!habilitar) cb.checked = false;
   });
 }
-
 window.onload = () => {
-  const hayCedula = document.querySelector('input[name="cedula"]').value.trim() !== '';
-  const esEspecializado = document.getElementById('especializado').checked;
-  togglePruebas(hayCedula && esEspecializado);
+  togglePruebas(document.getElementById('especializado').checked);
 };
 </script>
 
