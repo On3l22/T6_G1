@@ -1,0 +1,44 @@
+body {
+  /* por si acaso la ruta de la imgen la toma desdde este css */
+  background-color: #464890;
+  background-image: url('../img/fondo_principal.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+}
+
+footer {
+  background-color: #464890;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+.contenedor-formulario {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 300px;
+  overflow-y: auto;
+}

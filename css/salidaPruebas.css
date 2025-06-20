@@ -1,0 +1,74 @@
+/* Estilo para el título */
+.titulo-resumen {
+  text-align: center;
+  margin: 30px 0 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Tabla moderna */
+.tabla-resumen {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 40px;
+}
+
+/* Encabezados de la tabla */
+.tabla-resumen th {
+  background-color: #464890;
+  color: #ffffff;
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+/* Celdas */
+.tabla-resumen td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #2c2c2c;
+  background-color: #fcfcfc;
+}
+
+/* Estilo para subtablas como la de exámenes */
+.tabla-secundaria {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.tabla-secundaria th {
+  background-color: #5a5caa;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+.tabla-secundaria td {
+  padding: 10px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Última fila destacada: Total */
+.tabla-resumen tr:last-child td {
+  font-weight: bold;
+  background-color: #f5f6ff;
+  color: #1a1a1a;
+}
+
+/* Opcional: resaltar filas al pasar el mouse */
+.tabla-resumen tr:hover td,
+.tabla-secundaria tr:hover td {
+  background-color: #f0f4ff;
+}
