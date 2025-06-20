@@ -29,7 +29,7 @@
         <label class="fw-bold mb-2 d-block">Pruebas Urológicas:</label>
         <?php foreach ($MG_Urologicos as $key => $value): ?>
         <div class="form-check">
-            <input type="checkbox" name="pruebasHombre[<?= htmlspecialchars($key) ?>]" value="<?= $value ?>"
+            <input class="form-check-input" type="checkbox" name="pruebasHombre[<?= htmlspecialchars($key) ?>]" value="<?= $value ?>"
                 id="hombre-<?= $key ?>">
             <label class="form-check-label" for="hombre-<?= $key ?>">
                 <?= $key ?> ($
