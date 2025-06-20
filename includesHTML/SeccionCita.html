@@ -5,12 +5,12 @@
         <div class="mb-2 fw-bold">Medico:</div>
 
         <label class="me-2"><!-- Opción 1 -->
-            <input type="radio" id="radio-medico" name="medico" value="Atención de Medicina general" required>
+            <input type="radio" id="radio-medico" name="medico" value="General" required>
             General
         </label>
 
         <label class="me-2"><!-- Opción 2 -->
-            <input type="radio" id="radio-medico" name="medico" value="Atención de Especialista" required>
+            <input type="radio" id="radio-medico" name="medico" value="Especializado" required>
             Especializado
         </label>
     </div><!-- FIN medico-->
@@ -27,13 +27,14 @@
     <!-- INICIO checks hombres -->
     <div id="checks-hombres" style="display: none;" class="mb-3">
         <label class="fw-bold mb-2 d-block">Pruebas Urológicas:</label>
-        <?php foreach ($MG_Urologicos as $key => $value): ?>
+        <!-- Checks hombres -->
+        <?php foreach ($MG_Urologicos as $id => $info): ?>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="pruebasHombre[<?= htmlspecialchars($key) ?>]" value="<?= $value ?>"
-                id="hombre-<?= $key ?>">
-            <label class="form-check-label" for="hombre-<?= $key ?>">
-                <?= $key ?> ($
-                <?= $value ?>)
+            <input class="form-check-input" type="checkbox" name="pruebasHombre[]" value="<?= $id ?>"
+                id="hombre-<?= $id ?>">
+            <label class="form-check-label" for="hombre-<?= $id ?>">
+                <?= htmlspecialchars($info['nombre']) ?> ($
+                <?= $info['precio'] ?>)
             </label>
         </div>
         <?php endforeach; ?>
@@ -43,16 +44,18 @@
     <!-- INICIO checks mujeres -->
     <div id="checks-mujeres" style="display: none;" class="mb-3">
         <label class="fw-bold mb-2 d-block">Pruebas Ginecológicas:</label>
-        <?php foreach ($MG_Ginecologicos as $key => $value): ?>
+        <!-- Checks mujeres -->
+        <?php foreach ($MG_Ginecologicos as $id => $info): ?>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="pruebasMujer[<?= htmlspecialchars($key) ?>]"
-                value="<?= $value ?>" id="mujer-<?= $key ?>">
-            <label class="form-check-label" for="mujer-<?= $key ?>">
-                <?= $key ?> ($
-                <?= $value ?>)
+            <input class="form-check-input" type="checkbox" name="pruebasMujer[]" value="<?= $id ?>"
+                id="mujer-<?= $id ?>">
+            <label class="form-check-label" for="mujer-<?= $id ?>">
+                <?= htmlspecialchars($info['nombre']) ?> ($
+                <?= $info['precio'] ?>)
             </label>
         </div>
         <?php endforeach; ?>
+
     </div>
     <!-- FIN checks mujeres -->
 
@@ -62,12 +65,11 @@
 <!-- INICIO sección: Fecha de la cita -->
 <div class="mb-4">
     <h2 class="mb-3">Fecha</h2>
-    <input type="date" name="fecha" id="inputFechaCita" class="form-control w-50" value="" required="required"
-        title="" min="<?= date('Y-m-d'); ?>">
+    <input type="date" name="fecha" id="inputFechaCita" class="form-control w-50" value="" required="required" title=""
+        min="<?= date('Y-m-d'); ?>">
 </div>
 <div class="mb-4">
     <h2 class="mb-3">Hora</h2>
-    <input type="time" name="hora" id="inputHoraCita" class="form-control w-50" value="" required="required"
-        title="">
+    <input type="time" name="hora" id="inputHoraCita" class="form-control w-50" value="" required="required" title="">
 </div>
 <!-- FIN sección: Fecha de la cita -->

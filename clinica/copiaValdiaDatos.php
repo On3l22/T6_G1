@@ -1,7 +1,7 @@
 <?php
 require_once 'ProcesarDatos.php';
 require_once 'Salida.php';
-require_once __DIR__ . '/../clinica/zProceso_Citas.php';
+require_once 'zProceso_Citas.php';
 
 try {
     // Verifica si la solicitud proviene de un formulario por método POST

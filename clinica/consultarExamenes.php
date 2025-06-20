@@ -1,34 +1,32 @@
 <?php
 // Incluir la configuración de conexión
-include('./conexion/configurar.php');
+include(__DIR__ . '/../conexion/configurar.php');
 
 // Inicializar arrays
 $MG_Urologicos = [];
 $MG_Ginecologicos = [];
 
 try {
-    // Realizar la consulta
-    $sql = "SELECT nombre, precio, tipo FROM examenes";
+
+    $sql = "SELECT id, nombre, precio, tipo FROM examenes";
     $result = $conn->query($sql);
 
-    if (!$result) {
-        throw new Exception("Error Al Cargar el Formulario: " . $conn->error);
-    }
-
     while ($row = $result->fetch_assoc()) {
-        $nombre = $row['nombre'];
-        $precio = (float)$row['precio'];
-        $tipo = $row['tipo'];
+        $id = (int)$row['id'];
+        $item = ['nombre' => $row['nombre'], 'precio' => (float)$row['precio']];
 
-        if ($tipo === 'Urológico') {
-            $MG_Urologicos[$nombre] = $precio;
-        } elseif ($tipo === 'Ginecológico') {
-            $MG_Ginecologicos[$nombre] = $precio;
+        if ($row['tipo'] === 'Urológico') {
+            $MG_Urologicos[$id] = $item;
+        } elseif ($row['tipo'] === 'Ginecológico') {
+            $MG_Ginecologicos[$id] = $item;
         }
     }
 
 } catch (Exception $e) {
-    echo "Ha ocurrido un error: " . $e->getMessage();
+    // Mensaje visible en el formulario
+    echo "<div style='color:red;'>Error al cargar el formulario.</div>";
+    // Stack trace en la consola del navegador
+    echo "<script>console.error(" . json_encode($e->getMessage() . '\n' . $e->getTraceAsString()) . ");</script>";
 } finally {
     // Cerrar conexión si existe
     if ($conn) {

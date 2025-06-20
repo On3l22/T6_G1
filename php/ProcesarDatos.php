@@ -45,9 +45,9 @@ class ProcesarDatos
     {
         $total = $this->subtotal_examenes;
 
-        if ($this->tipo_servicio === "Atención de Medicina general") {
+        if ($this->tipo_servicio === "General") {
             $total += ($this->primera_cita === "Sí") ? 20 : 15;
-        } elseif ($this->tipo_servicio === "Atención de Especialista") {
+        } elseif ($this->tipo_servicio === "Especializado") {
             $total += ($this->primera_cita === "Sí") ? 40 : 30;
         }
 
