@@ -1,36 +1,75 @@
-// Espera a que todo el contenido HTML se haya cargado y parseado antes de ejecutar el script
+// Espera a que todo el contenido HTML haya sido completamente cargado antes de ejecutar el script
 document.addEventListener("DOMContentLoaded", () => {
-  
-  // Selecciona todos los elementos <input> tipo radio con nombre "sexo"
+
+  // Selecciona todos los inputs tipo radio que indican el sexo del paciente
   const radiosSexo = document.querySelectorAll('input[name="sexo"]');
-  
-  // Obtiene el contenedor de checkboxes para hombres
+
+  // Obtiene el contenedor de checkboxes exclusivos para pacientes masculinos
   const checksHombres = document.getElementById("checks-hombres");
-  
-  // Obtiene el contenedor de checkboxes para mujeres
+
+  // Obtiene el contenedor de checkboxes exclusivos para pacientes femeninos
   const checksMujeres = document.getElementById("checks-mujeres");
 
-  // Recorre cada radio button para añadir un listener al evento "change"
-  radiosSexo.forEach(radio => {
-    radio.addEventListener("change", function() {
-      
-      // Si el valor seleccionado es "masculino"
-      if (this.value === "masculino") {
-        // Muestra el contenedor de pruebas para hombres
-        checksHombres.style.display = "block";
-        // Oculta el contenedor de pruebas para mujeres
-        checksMujeres.style.display = "none";
+  // Selecciona todos los inputs tipo radio que indican el tipo de atención médica
+  const radioMedico = document.querySelectorAll('input[name="medico"]');
 
-      // Si el valor seleccionado es "femenino"
-      } else if (this.value === "femenino") {
-        // Oculta el contenedor de pruebas para hombres
-        checksHombres.style.display = "none";
-        // Muestra el contenedor de pruebas para mujeres
+  // Variable bandera que indica si el tipo de atención seleccionado es "Especialista"
+  let bandera = false;
+
+  // Variable que almacena el sexo seleccionado ("masculino" o "femenino")
+  let sexoSeleccionado = "";
+
+  /**
+   * Función que actualiza la visibilidad de los checkboxes según:
+   * - Si se eligió "Atención de Especialista"
+   * - Y el sexo seleccionado
+   */
+  function actualizarVisibilidad() {
+    // Oculta ambos contenedores de checkboxes por defecto
+    checksHombres.style.display = "none";
+    checksMujeres.style.display = "none";
+
+    // Si la atención es "Especialista" y se ha seleccionado un sexo válido
+    if (bandera) {
+      if (sexoSeleccionado === "masculino") {
+        // Muestra opciones para hombres
+        checksHombres.style.display = "block";
+      } else if (sexoSeleccionado === "femenino") {
+        // Muestra opciones para mujeres
         checksMujeres.style.display = "block";
       }
+    }
+  }
+
+  // Asigna un listener a cada radio de tipo de atención médica
+  radioMedico.forEach(radio => {
+    radio.addEventListener("change", function() {
+      // Si el valor es "Medicina general", desactiva la bandera y oculta todo
+      if (this.value === "Atención de Medicina general") {
+        bandera = false;
+      }
+      // Si es "Especialista", activa la bandera
+      else if (this.value === "Atención de Especialista") {
+        bandera = true;
+      }
+
+      // Actualiza visibilidad por si ya hay un sexo previamente seleccionado
+      actualizarVisibilidad();
+    });
+  });
+
+  // Asigna un listener a cada radio de sexo
+  radiosSexo.forEach(radio => {
+    radio.addEventListener("change", function() {
+      // Guarda el sexo elegido
+      sexoSeleccionado = this.value;
+
+      // Actualiza visibilidad según tipo de atención y nuevo sexo
+      actualizarVisibilidad();
     });
   });
 });
+
 
 // Espera a que todo el DOM esté completamente cargado antes de ejecutar el script
 document.addEventListener("DOMContentLoaded", () => {
