@@ -1,25 +1,4 @@
-/**
- * Recupera la información de todos los pacientes y sus citas activas con exámenes asociados.
- *
- * Proceso:
- * 1. Incluye la configuración de conexión a la base de datos.
- * 2. Consulta todos los pacientes registrados en la base de datos.
- * 3. Para cada paciente:
- *    - Obtiene y almacena su información personal (nombre, apellido, edad, sexo, provincia, distrito, ciudad, dirección y teléfono).
- *    - Consulta todas sus citas activas (citas con campo 'activo' igual a 1), junto con los exámenes asociados a cada cita.
- *    - Organiza las citas y sus exámenes en un arreglo estructurado.
- * 4. Maneja errores de conexión y de consulta mediante excepciones.
- * 5. Cierra la conexión a la base de datos al finalizar el proceso.
- *
- * Variables:
- * - $pacientes: Arreglo asociativo que almacena la información de cada paciente y sus citas.
- * - $conn: Objeto de conexión a la base de datos.
- *
- * Notas:
- * - El teléfono mostrado será el móvil si está disponible, de lo contrario el de casa.
- * - Las citas se agrupan por paciente y se listan solo las activas.
- * - Cada cita puede tener múltiples exámenes asociados.
- */
+
 <?php
 // Incluir la configuración de conexión
 include('./conexion/configurar.php');

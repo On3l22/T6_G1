@@ -1,3 +1,5 @@
+
+<?php
 /**
  * Obtiene una lista de exámenes desde la base de datos.
  *
@@ -8,7 +10,7 @@
  *
  * @return array Arreglo asociativo de exámenes, donde la clave es el ID y el valor es un arreglo con 'nombre' y 'precio'.
  */
-<?php
+
 function obtenerExamenesPorID() {
 include(__DIR__ . '/../conexion/configurar.php');
 

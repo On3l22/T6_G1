@@ -1,3 +1,5 @@
+
+<?php
 /**
  * Inserta una nueva cita en la base de datos junto con los exámenes asociados.
  *
@@ -15,7 +17,6 @@
  * si se proporcionan exámenes, los asocia en la tabla 'cita_examen'.
  * Utiliza sentencias preparadas para evitar inyecciones SQL.
  */
-<?php
 function insertarNuevaCita($datos)
 {
 

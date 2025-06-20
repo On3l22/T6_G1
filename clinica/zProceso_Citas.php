@@ -1,3 +1,5 @@
+
+<?php
 /**
  * Procesa la información de una cita médica.
  *
@@ -9,7 +11,7 @@
  *                     Debe incluir al menos la clave 'cedula' y los datos necesarios para la cita.
  * @throws Exception Si ocurre un error durante el procesamiento de la cita.
  */
-<?php
+ 
 function procesarCita($datos)
 {
     try {

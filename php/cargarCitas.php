@@ -1,3 +1,5 @@
+
+<?php
 /**
  * Este script PHP carga y muestra una tabla de citas activas desde la base de datos.
  *
@@ -22,7 +24,7 @@
  * Salida:
  * - Tabla HTML con las citas activas y un botón para cancelar cada cita.
  */
-<?php
+
 require_once __DIR__ . '/../conexion/configurar.php';
 
 $pagina = isset($_GET['pagina']) ? max((int)$_GET['pagina'], 1) : 1;

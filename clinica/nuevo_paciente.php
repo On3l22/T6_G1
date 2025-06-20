@@ -1,3 +1,5 @@
+
+<?php
 /**
  * Inserta un nuevo paciente en la base de datos.
  *
@@ -20,7 +22,6 @@
  *
  * @throws Exception Si ocurre un error durante la inserción del paciente.
  */
-<?php
 function insertarNuevoPaciente($datos)
 {
 

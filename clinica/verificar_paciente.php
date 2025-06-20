@@ -1,3 +1,5 @@
+
+<?php
 /**
  * Verifica si un paciente existe en la base de datos según su cédula.
  *
@@ -8,7 +10,7 @@
  * @return bool Retorna true si el paciente existe, false en caso contrario.
  * @throws Exception Lanza una excepción si ocurre un error durante la verificación.
  */
-<?php
+
 function pacienteExiste($cedula)
 {
     include(__DIR__ . '/../conexion/configurar.php');

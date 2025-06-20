@@ -1,3 +1,5 @@
+
+<?php
 /**
  * Script para cancelar una cita en la base de datos.
  *
@@ -20,7 +22,7 @@
  * - { "success": false, "message": "Solicitud no válida." } si la solicitud no es POST o falta el parámetro.
  * - { "success": false, "message": "Error message" } si ocurre una excepción.
  */
-<?php
+
 require_once __DIR__ . '/../conexion/configurar.php';
 
 header('Content-Type: application/json');

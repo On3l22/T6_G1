@@ -97,6 +97,7 @@ if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
     campo_ro(6,'Teléfono',$telefono,'telefono');
     ?>
 
+<<<<<<< Updated upstream
     <div class="col-md-6">
       <label class="form-label d-block">Primera cita</label>
       <div class="form-check">
@@ -106,6 +107,9 @@ if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
       </div>
     </div>
 
+=======
+    <!-- Selección del tipo de médico -->
+>>>>>>> Stashed changes
     <div class="col-md-3">
       <label class="form-label">Tipo de Médico</label><br>
       <input type="radio" name="tipo_medico" id="general" value="General"

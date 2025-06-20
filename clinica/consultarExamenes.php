@@ -1,3 +1,5 @@
+
+<?php
 /**
  * Consulta los exámenes médicos almacenados en la base de datos y los clasifica en dos categorías:
  * Urológicos y Ginecológicos. Los resultados se almacenan en los arrays $MG_Urologicos y $MG_Ginecologicos,
@@ -15,7 +17,7 @@
  * @var array $MG_Ginecologicos   Lista de exámenes ginecológicos (clave: id, valor: ['nombre', 'precio']).
  * @var mysqli $conn              Conexión a la base de datos.
  */
-<?php
+
 // Incluir la configuración de conexión
 include(__DIR__ . '/../conexion/configurar.php');
 

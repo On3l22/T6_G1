@@ -1,4 +1,4 @@
-/**
+<!--
  * Sección de listado y paginación de citas recientes activas.
  *
  * - Muestra un contenedor para las citas y controles de paginación (Anterior/Siguiente).
@@ -14,7 +14,7 @@
  *   - cancelarCita(idCita): Solicita la cancelación de una cita y recarga la lista si es exitosa.
  *
  * Al cargar la página, se inicializa mostrando la primera página de citas.
- */
+ */-->
 <h2>Citas recientes activas</h2>
 <div id="contenedor-citas"></div>
 <div class="paginacion">

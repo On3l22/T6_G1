@@ -1,3 +1,5 @@
+
+<?php
 /**
  * Muestra un resumen detallado de la cita médica, incluyendo los datos del paciente,
  * el servicio solicitado, los exámenes seleccionados y el desglose de costos.
@@ -19,7 +21,7 @@
  * Esta función obtiene la información de los exámenes seleccionados, muestra los datos
  * del paciente, los exámenes y el resumen de costos en formato de tabla HTML.
  */
-<?php
+
 function mostrarResumenCita(
     string $nombre,
     string $apellido,

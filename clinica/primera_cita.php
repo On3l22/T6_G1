@@ -1,3 +1,5 @@
+
+<?php
 /**
  * Verifica si una persona está agendando su primera cita.
  *
@@ -9,7 +11,7 @@
  * @return bool true si es la primera cita, false en caso contrario.
  * @throws Exception Si ocurre un error al consultar la base de datos.
  */
-<?php
+
 function esPrimeraCita($cedula) {
      include(__DIR__ . '/../conexion/configurar.php');
 
