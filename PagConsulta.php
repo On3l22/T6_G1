@@ -17,6 +17,7 @@
     <!-- Links de archivos custom - toda ruta se empezara tomar desde la carpeta raiz, T6_G1 -->
     <base href="/T6_G1/">
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/tablaListado.css">
 
     <!-- por si rompe -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

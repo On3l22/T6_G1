@@ -1,0 +1,28 @@
+.tabla-citas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+.tabla-citas th {
+    background-color: #464890;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px 12px;
+}
+
+.tabla-citas td {
+    padding: 8px 12px;
+    border-top: 1px solid #464890; /* borde gris claro estilo Bootstrap */
+}
+
+.tabla-citas tr:hover {
+    background-color: #464890;
+}
+
+.paginacion {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}

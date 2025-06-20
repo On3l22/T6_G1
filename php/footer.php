@@ -29,9 +29,6 @@
         <ul class="list-unstyled mb-0">
           <li class="mb-0">Joan Soto</li>
           <li class="mb-0">Angelo Guerrero</li>
-          <li class="mb-0">Onel Magallon</li>
-          <li class="mb-0">Erick Tenorio</li>
-          <li class="mb-0">Ariel Gutierrez</li>
         </ul>
       </div>
 

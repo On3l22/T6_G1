@@ -26,15 +26,7 @@ $catalogoPruebas = ($sexo === 'Femenino') ? $MG_Ginecologicos : $MG_Urologicos;
 $fechaSolo = date('Y-m-d', strtotime($fecha_cita));
 $horaSolo  = date('H:i',    strtotime($fecha_cita));
 ?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Registro de Paciente</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
-<div class="container py-5">
+
   <h2 class="mb-4">Registro de Paciente</h2>
 
   <form method="POST" class="row g-3">
@@ -145,5 +137,4 @@ window.onload = () => {
   togglePruebas(document.getElementById('especializado').checked);
 };
 </script>
-</body>
-</html>
+

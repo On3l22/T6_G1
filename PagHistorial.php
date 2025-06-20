@@ -17,6 +17,7 @@
     <!-- Links de archivos custom - toda ruta se empezara tomar desde la carpeta raiz, T6_G1 -->
     <base href="/T6_G1/">
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/tablaListado.css">
 
     <!-- por si rompe -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -35,15 +36,12 @@
     <!--------------------------Contenido----------------------------------------->
     <div class="container mt-4" style="flex-grow: 1;">
         <h3 class="mb-4">Hospital Aquilino T. <span class="badge text-white"
-                style="background-color: #1299B7;">Listado de Citas</span>
+                style="background-color: #1299B7;">Historial de Citas</span>
         </h3>
 
         <!-- Botones o Tabs -->
         <?php include './includesHTML/menu.html' ?>
-        <?php include './clinica/consultarListadoCitas.php' ?>
-        <div class="mt-4">
-            <?php listarCitasRecientes(10); ?>
-        </div>
+        <?php include './php/consultarListadoCitas.php' ?>
 
     </div>
 
