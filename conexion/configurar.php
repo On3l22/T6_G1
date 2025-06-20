@@ -1,10 +1,10 @@
 <?php 
 // Incluye el archivo de conexión en la cabecera 
-$servername = "localhost"; 
+$servername = "127.0.0.1:3309"; 
 $username = "root"; 
 
-$password = "UTP.Guerrero2024"; 
-$database = "sakila"; 
+$password = ""; 
+$database = "clinica"; 
  
 try { 
     // Intenta crear la conexión 
@@ -16,7 +16,7 @@ try {
     } 
  
     // Si la conexión es exitosa, muestra un mensaje 
-    echo "<div>¡Conexión exitosa a la base de datos!</div>"; 
+   // echo "<div>¡Conexión exitosa a la base de datos!</div>"; 
  
     // Realiza aquí las operaciones con la base de datos 
  

@@ -1,22 +1,6 @@
 <?php
 // Definir arrays de pruebas
-$MG_Urologicos = [
-    'Biopsia de próstata transperineal dirigida' => 60,
-    'Cistoscopia' => 55,
-    'Ecografía urológica' => 70,
-    'Flujometría' => 70,
-    'PSA (Antígeno Prostático Específico)' => 35,
-    'Urodinamia' => 80
-];
-
-$MG_Ginecologicos = [
-    'Biopsias de diferentes tejidos' => 60,
-    'Ecografía ginecológica' => 40,
-    'Histeroscopia' => 60,
-    'Mamografía' => 50,
-    'Ecografía mamaria' => 50,
-    'Pruebas para el estudio de la fertilidad' => 100
-];
+ include './clinica/consultarExamenes.php'
 ?>
 
 <!-- INICIO contenedor principal -->
@@ -31,9 +15,6 @@ $MG_Ginecologicos = [
            <?php include __DIR__ . '/../includesHTML/SeccionPaciente.html' ?>
         </div>
         <!-- FIN sección: Información del paciente -->
-
-
-
 
 
         <!-- INICIO sección 2 -->

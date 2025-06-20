@@ -42,7 +42,6 @@
         <!-- Botones o Tabs -->
         <?php include './includesHTML/menu.html' ?>
         <?php include './php/FormCitas.php' ?>
-
     </div>
 
 
