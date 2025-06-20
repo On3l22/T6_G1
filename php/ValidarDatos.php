@@ -115,7 +115,6 @@ try {
             'celular' => $celular,
             'telefono' => $telefono,
             'tipo_servicio' => $tipo_servicio,
-            'primera_cita' => $primera_cita,
             'fecha' => $fecha,
             'hora' => $hora,
             'metodo_pago' => $metodo_pago,

@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /**
    * Función que actualiza la visibilidad de los checkboxes según:
-   * - Si se eligió "Atención de Especialista"
+   * - Si se eligió "Especialista"
    * - Y el sexo seleccionado
    */
   function actualizarVisibilidad() {
@@ -45,11 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
   radioMedico.forEach(radio => {
     radio.addEventListener("change", function() {
       // Si el valor es "Medicina general", desactiva la bandera y oculta todo
-      if (this.value === "Atención de Medicina general") {
+      if (this.value === "General") {
         bandera = false;
       }
-      // Si es "Especialista", activa la bandera
-      else if (this.value === "Atención de Especialista") {
+      // Si es "Especializado", activa la bandera
+      else if (this.value === "Especializado") {
         bandera = true;
       }
 
