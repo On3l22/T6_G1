@@ -57,13 +57,12 @@ try {
 
         $pacientes[$cedula]['citas'] = [];
 
-        // 2. Obtener citas activas con exámenes
+        // 2. Obtener citas activas con ID de exámenes
         $queryCitas = "
-            SELECT c.id, c.fecha, c.hora, c.tipo_medico, 
-                   e.nombre AS examen_nombre, c.activo
+            SELECT c.id, c.fecha, c.hora, c.tipo_medico,
+                   ce.examen_id, c.activo
             FROM citas c
             LEFT JOIN cita_examen ce ON ce.cita_id = c.id
-            LEFT JOIN examenes e ON ce.examen_id = e.id
             WHERE c.cedula = '$cedula'
               AND c.activo = 1
             ORDER BY c.fecha, c.hora
@@ -88,11 +87,12 @@ try {
                 ];
             }
 
-            if ($row['examen_nombre']) {
-                $pacientes[$cedula]['citas'][$idCita]['pruebas'][] = $row['examen_nombre'];
+            if ($row['examen_id']) {
+                $pacientes[$cedula]['citas'][$idCita]['pruebas'][] = (int)$row['examen_id'];
             }
         }
 
+        // Convertir las citas a array numerado
         $pacientes[$cedula]['citas'] = array_values($pacientes[$cedula]['citas']);
     }
 
