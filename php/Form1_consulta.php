@@ -1,5 +1,4 @@
 <?php
-// Incluye scripts auxiliares para obtener catálogos de exámenes y citas por paciente
 include './clinica/consultarExamenes.php';
 include './clinica/recuperarCitas.php';
 
@@ -7,92 +6,37 @@ $mensaje = '';
 $cedulaIngresada = $_POST['cedula'] ?? '';
 $paciente        = $pacientes[$cedulaIngresada] ?? null;
 
-// Carga los datos del paciente si existe
 if ($paciente) {
     $info = $paciente['info'];
-    foreach ($info as $k => $v) { $$k = $v; } // Carga dinámica de variables
+    foreach ($info as $k => $v) { $$k = $v; }
 } else {
-    // Valores vacíos si no se encontró el paciente
     $nombre = $apellido = $edad = $sexo = $provincia = $distrito = $ciudad = $direccion = $telefono = '';
 }
 
-$indiceCitaSel = $_POST['cita_id'] ?? 0; // Índice de cita seleccionada
+$indiceCitaSel = $_POST['cita_id'] ?? 0;
 $listaCitas    = $paciente['citas'] ?? [];
 $citaActual    = $listaCitas[$indiceCitaSel] ?? null;
 
-// Carga los valores de la cita seleccionada
 $tipo_medico   = $citaActual['tipo_medico']   ?? 'General';
 $primera_cita  = $citaActual['primera_cita']  ?? 'No';
 $fecha_cita    = $citaActual['fecha']         ?? date('Y-m-d\TH:i');
 $pruebas_sel   = $citaActual['pruebas']       ?? [];
 
-// Catálogo dinámico de pruebas según sexo
 $catalogoPruebas = ($sexo === 'Femenino') ? $MG_Ginecologicos : $MG_Urologicos;
-
-// Separación de fecha y hora
 $fechaSolo = date('Y-m-d', strtotime($fecha_cita));
 $horaSolo  = date('H:i',    strtotime($fecha_cita));
 
-// Procesamiento del formulario si se presiona "Guardar"
+// Guardar cambios (simulado)
 if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
-    $idx = (int)$_POST['cita_id'];
-    $tipo_medico_post = $_POST['tipo_medico'] ?? 'General';
-    $fecha_post = $_POST['fecha'] ?? $fechaSolo;
-    $hora_post = $_POST['hora'] ?? $horaSolo;
-    $pruebas_post = $_POST['tipo_prueba'] ?? [];
-
-    include './conexion/configurar.php';
-
-    try {
-        $cita_id_real = $listaCitas[$idx]['id'] ?? null;
-
-        if (!$cita_id_real) {
-            throw new Exception("No se encontró la cita para actualizar.");
-        }
-
-        $conn->begin_transaction();
-
-        // Actualiza los datos principales de la cita
-        $stmt = $conn->prepare("UPDATE citas SET tipo_medico = ?, fecha = ?, hora = ? WHERE id = ? AND cedula = ?");
-        if (!$stmt) throw new Exception("Error en la preparación de la consulta: " . $conn->error);
-
-        $stmt->bind_param("sssis", $tipo_medico_post, $fecha_post, $hora_post, $cita_id_real, $cedulaIngresada);
-        if (!$stmt->execute()) throw new Exception("Error al ejecutar UPDATE: " . $stmt->error);
-        $stmt->close();
-
-        // Elimina las pruebas anteriores asociadas a la cita
-        $stmtDel = $conn->prepare("DELETE FROM cita_examen WHERE cita_id = ?");
-        if (!$stmtDel) throw new Exception("Error en la preparación DELETE: " . $conn->error);
-
-        $stmtDel->bind_param("i", $cita_id_real);
-        if (!$stmtDel->execute()) throw new Exception("Error al ejecutar DELETE: " . $stmtDel->error);
-        $stmtDel->close();
-
-        // Inserta las nuevas pruebas seleccionadas
-        if (!empty($pruebas_post)) {
-            $stmtIns = $conn->prepare("INSERT INTO cita_examen (cita_id, examen_id) VALUES (?, ?)");
-            if (!$stmtIns) throw new Exception("Error en la preparación INSERT: " . $conn->error);
-
-            foreach ($pruebas_post as $examen_id) {
-                $examen_id = (int)$examen_id;
-                $stmtIns->bind_param("ii", $cita_id_real, $examen_id);
-                if (!$stmtIns->execute()) throw new Exception("Error al ejecutar INSERT: " . $stmtIns->error);
-            }
-            $stmtIns->close();
-        }
-
-        $conn->commit();
-        $mensaje = "Cita actualizada correctamente.";
-    } catch (Exception $e) {
-        $conn->rollback();
-        $mensaje = "Error al actualizar la cita: " . $e->getMessage();
-    } finally {
-        $conn->close();
-    }
+    $idx = $_POST['cita_id'];
+    $listaCitas[$idx]['tipo_medico'] = $_POST['tipo_medico'] ?? 'General';
+    $listaCitas[$idx]['fecha'] = $_POST['fecha'] ?? $fechaSolo;
+    $listaCitas[$idx]['hora'] = $_POST['hora'] ?? $horaSolo;
+    $listaCitas[$idx]['pruebas'] = $_POST['tipo_prueba'] ?? [];
+    $mensaje = "Cita actualizada correctamente.";
 }
 ?>
 
-<!-- HTML principal -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -110,7 +54,6 @@ if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
 
   <form method="POST" class="row g-3">
 
-    <!-- Campo de cédula con botón Buscar -->
     <div class="col-md-6">
       <label class="form-label">Cédula</label>
       <div class="input-group">
@@ -119,7 +62,6 @@ if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
       </div>
     </div>
 
-    <!-- Selector de citas del paciente -->
     <?php if ($paciente): ?>
       <div class="col-md-6">
         <label class="form-label">Citas del paciente</label>
@@ -134,7 +76,6 @@ if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
       </div>
     <?php endif; ?>
 
-    <!-- Función para mostrar campos de solo lectura -->
     <?php
     function campo_ro($col, $label, $valor, $name) {
         echo <<<HTML
@@ -156,7 +97,6 @@ if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
     campo_ro(6,'Teléfono',$telefono,'telefono');
     ?>
 
-    <!-- Campo de primera cita -->
     <div class="col-md-6">
       <label class="form-label d-block">Primera cita</label>
       <div class="form-check">
@@ -166,7 +106,6 @@ if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
       </div>
     </div>
 
-    <!-- Selección del tipo de médico -->
     <div class="col-md-3">
       <label class="form-label">Tipo de Médico</label><br>
       <input type="radio" name="tipo_medico" id="general" value="General"
@@ -179,7 +118,6 @@ if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
       <label for="especializado">Especializado</label>
     </div>
 
-    <!-- Sección de pruebas médicas -->
     <div class="col-md-9" id="seccion-pruebas" style="display: none;">
       <label class="form-label">Tipo de Prueba</label>
       <div class="border p-3 rounded bg-white">
@@ -204,7 +142,6 @@ if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
       </div>
     </div>
 
-    <!-- Fecha y hora de la cita -->
     <fieldset class="col-md-6 border rounded p-3">
       <legend class="float-none w-auto px-2">Fecha y hora de la cita</legend>
       <div class="row">
@@ -219,16 +156,13 @@ if (isset($_POST['guardar']) && $cedulaIngresada && isset($_POST['cita_id'])) {
       </div>
     </fieldset>
 
-    <!-- Botón para guardar cambios -->
     <div class="col-12">
       <button class="btn btn-primary" name="guardar">Guardar</button>
     </div>
   </form>
 </div>
 
-<!-- JavaScript para controlar pruebas -->
 <script>
-// Muestra u oculta la sección de pruebas médicas
 function togglePruebas(habilitar) {
   const seccion = document.getElementById('seccion-pruebas');
   if (!seccion) return;
@@ -241,12 +175,10 @@ function togglePruebas(habilitar) {
   });
 }
 
-// Inicializa estado de la sección de pruebas
 window.onload = () => {
   const hayCedula = document.querySelector('input[name="cedula"]').value.trim() !== '';
   const esEspecializado = document.getElementById('especializado').checked;
   togglePruebas(hayCedula && esEspecializado);
 };
 </script>
-</body>
-</html>
+
