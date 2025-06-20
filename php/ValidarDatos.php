@@ -2,6 +2,7 @@
 require_once 'ProcesarDatos.php';
 require_once 'Salida.php';
 require_once __DIR__ . '/../clinica/zProceso_Citas.php';
+require_once __DIR__ . '/../clinica/primera_cita.php';
 
 try {
     // Verifica si la solicitud proviene de un formulario por método POST
@@ -27,7 +28,7 @@ try {
         // Captura de datos del servicio
         // -----------------------------
         $tipo_servicio = $_POST['medico'];
-        $primera_cita = isset($_POST['primera-cita']) ? $_POST['primera-cita'] : "No";
+        $esPrimera = esPrimeraCita($cedula);
         $fecha = $_POST['fecha'];
         $hora = $_POST['hora'];
 
@@ -65,7 +66,7 @@ try {
         $procesar = new ProcesarDatos(
             $edad,
             $genero,
-            $primera_cita,
+            $esPrimera ? "Si" : "No",
             $tipo_servicio,
             $examenes_seleccionados,
             $fecha

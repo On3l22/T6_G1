@@ -6,19 +6,18 @@ function insertarNuevaCita($datos)
 
     try {
         // Insertar cita
-        $sql = "INSERT INTO citas (cedula, tipo_medico, primera_vez, fecha, hora, metodo_pago)
-                VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO citas (cedula, tipo_medico, fecha, hora, metodo_pago)
+        VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $primera = ($datos['primera_cita'] == "Si") ? 1 : 0;
         $stmt->bind_param(
-            "ssisss",
+            "sssss",
             $datos['cedula'],
             $datos['tipo_servicio'],
-            $primera,
             $datos['fecha'],
             $datos['hora'],
             $datos['metodo_pago']
         );
+
         $stmt->execute();
         $cita_id = $stmt->insert_id;
         $stmt->close();
