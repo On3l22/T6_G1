@@ -1,3 +1,27 @@
+/**
+ * Este script PHP carga y muestra una tabla de citas activas desde la base de datos.
+ *
+ * Funcionalidad:
+ * - Obtiene los parámetros de paginación 'pagina' y 'limite' desde la URL (GET).
+ * - Realiza una consulta SQL para obtener las citas activas, uniendo la información del paciente.
+ * - Muestra los resultados en una tabla HTML, incluyendo nombre, cédula, tipo de médico, fecha, hora, método de pago y una opción para cancelar la cita.
+ * - Si no hay citas activas, muestra un mensaje indicándolo.
+ *
+ * Parámetros de entrada (vía GET):
+ * - pagina: Número de página para la paginación (opcional, por defecto 1).
+ * - limite: Cantidad de registros por página (opcional, por defecto 5).
+ *
+ * Dependencias:
+ * - Requiere el archivo de configuración de la base de datos ('configurar.php').
+ * - Utiliza la extensión mysqli para la conexión y consulta a la base de datos.
+ *
+ * Seguridad:
+ * - Utiliza consultas preparadas para evitar inyección SQL.
+ * - Escapa los datos de salida con htmlspecialchars para prevenir XSS.
+ *
+ * Salida:
+ * - Tabla HTML con las citas activas y un botón para cancelar cada cita.
+ */
 <?php
 require_once __DIR__ . '/../conexion/configurar.php';
 

@@ -1,3 +1,24 @@
+/**
+ * Muestra un resumen detallado de la cita médica, incluyendo los datos del paciente,
+ * el servicio solicitado, los exámenes seleccionados y el desglose de costos.
+ *
+ * @param string $nombre Nombre del paciente.
+ * @param string $apellido Apellido del paciente.
+ * @param string $cedula Cédula de identidad del paciente.
+ * @param string $fecha Fecha de la cita.
+ * @param string $tipo_servicio Tipo de servicio solicitado.
+ * @param array $examenes_seleccionados Arreglo de IDs de los exámenes seleccionados.
+ * @param float $totalbt Subtotal de la cita (incluye exámenes).
+ * @param float $descuento_jubilado Monto de descuento aplicado por jubilado.
+ * @param float $descuento_octubre Monto de descuento aplicado por promoción de octubre.
+ * @param float $precio_final Total a pagar después de descuentos.
+ * @param string $hora Hora de la cita.
+ *
+ * @return void
+ *
+ * Esta función obtiene la información de los exámenes seleccionados, muestra los datos
+ * del paciente, los exámenes y el resumen de costos en formato de tabla HTML.
+ */
 <?php
 function mostrarResumenCita(
     string $nombre,

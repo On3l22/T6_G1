@@ -1,3 +1,20 @@
+/**
+ * Inserta una nueva cita en la base de datos junto con los exámenes asociados.
+ *
+ * @param array $datos Arreglo asociativo que contiene los datos de la cita:
+ *   - 'cedula' (string): Cédula del paciente.
+ *   - 'tipo_servicio' (string): Tipo de servicio o médico.
+ *   - 'fecha' (string): Fecha de la cita (formato 'YYYY-MM-DD').
+ *   - 'hora' (string): Hora de la cita (formato 'HH:MM:SS').
+ *   - 'metodo_pago' (string): Método de pago seleccionado.
+ *   - 'examenes' (array, opcional): Lista de IDs de exámenes a asociar con la cita.
+ *
+ * @throws Exception Si ocurre un error al insertar la cita o los exámenes.
+ *
+ * Este método realiza la inserción de una nueva cita en la tabla 'citas' y,
+ * si se proporcionan exámenes, los asocia en la tabla 'cita_examen'.
+ * Utiliza sentencias preparadas para evitar inyecciones SQL.
+ */
 <?php
 function insertarNuevaCita($datos)
 {

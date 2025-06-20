@@ -1,3 +1,20 @@
+/**
+ * Sección de listado y paginación de citas recientes activas.
+ *
+ * - Muestra un contenedor para las citas y controles de paginación (Anterior/Siguiente).
+ * - Usa JavaScript para cargar las citas de forma dinámica desde el servidor mediante fetch.
+ * - Permite cancelar una cita con confirmación, enviando la solicitud por POST.
+ *
+ * Variables:
+ *   - paginaActual: número de la página actualmente mostrada.
+ *   - citasPorPagina: cantidad de citas a mostrar por página.
+ *
+ * Funciones:
+ *   - cargarCitas(pagina): Solicita al servidor las citas de la página indicada y actualiza la vista.
+ *   - cancelarCita(idCita): Solicita la cancelación de una cita y recarga la lista si es exitosa.
+ *
+ * Al cargar la página, se inicializa mostrando la primera página de citas.
+ */
 <h2>Citas recientes activas</h2>
 <div id="contenedor-citas"></div>
 <div class="paginacion">

@@ -1,3 +1,20 @@
+/**
+ * Consulta los exámenes médicos almacenados en la base de datos y los clasifica en dos categorías:
+ * Urológicos y Ginecológicos. Los resultados se almacenan en los arrays $MG_Urologicos y $MG_Ginecologicos,
+ * respectivamente, usando el ID del examen como clave y un array asociativo con el nombre y precio como valor.
+ *
+ * Proceso:
+ * - Incluye el archivo de configuración para la conexión a la base de datos.
+ * - Ejecuta una consulta SQL para obtener todos los exámenes con sus respectivos campos.
+ * - Itera sobre los resultados y clasifica cada examen según su tipo.
+ * - Maneja posibles excepciones mostrando un mensaje de error en el formulario y el detalle en la consola.
+ * - Cierra la conexión a la base de datos al finalizar.
+ *
+ * Variables:
+ * @var array $MG_Urologicos      Lista de exámenes urológicos (clave: id, valor: ['nombre', 'precio']).
+ * @var array $MG_Ginecologicos   Lista de exámenes ginecológicos (clave: id, valor: ['nombre', 'precio']).
+ * @var mysqli $conn              Conexión a la base de datos.
+ */
 <?php
 // Incluir la configuración de conexión
 include(__DIR__ . '/../conexion/configurar.php');

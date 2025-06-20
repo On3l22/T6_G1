@@ -1,3 +1,13 @@
+/**
+ * Verifica si un paciente existe en la base de datos según su cédula.
+ *
+ * Esta función recibe una cédula como parámetro y consulta la base de datos
+ * para determinar si existe un paciente registrado con dicha cédula.
+ * 
+ * @param string $cedula La cédula del paciente a verificar.
+ * @return bool Retorna true si el paciente existe, false en caso contrario.
+ * @throws Exception Lanza una excepción si ocurre un error durante la verificación.
+ */
 <?php
 function pacienteExiste($cedula)
 {
