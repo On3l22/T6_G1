@@ -40,7 +40,7 @@
 
         <!-- Botones o Tabs -->
         <?php include './includesHTML/menu.html' ?>
-        
+        <?php include './php/Form1_consulta.php' ?>
 
     </div>
 
